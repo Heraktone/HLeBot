@@ -1,120 +1,109 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Calendar.v3;
-using Google.Apis.Calendar.v3.Data;
-using Google.Apis.Http;
-using Google.Apis.Services;
-using Google.Apis.Util.Store;
 using Microsoft.Extensions.DependencyInjection;
+using Quartz;
+using Quartz.Logging;
 using System;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace HLeBot
 {
-    class Program
+    public class Program
     {
 		public static void Main(string[] args)
 			=> new Program().MainAsync().GetAwaiter().GetResult();
 
-        private DiscordSocketClient _client;
-        private CommandService _commands;
-        public IServiceProvider _service { get; private set; }
+        private static DiscordSocketClient Client;
+        public static CommandService Commands;
+        private static readonly ulong PlayerIdStr = 500148339883376641;
+        private static readonly ulong ScenarioChannelId = 623907090297258005;
+        private static readonly ulong LoloChannelId = 882470660776026152;
+        public IServiceProvider Service { get; private set; }
+
+        public static IMessageChannel GetScenarioChannel()
+        {
+            return Client.GetChannel(ScenarioChannelId) as IMessageChannel;
+        }
+
+        public async static Task<IDMChannel> GetLoloChannel()
+        {
+            return await Client.GetDMChannelAsync(LoloChannelId) as IDMChannel;
+        }
+
+        public static string GetPlayerIdStr()
+        {
+            return $"<@&{PlayerIdStr}>";
+        }
 
         public async Task MainAsync()
         {
-            _client = new DiscordSocketClient(new DiscordSocketConfig
+            LogProvider.SetCurrentLogProvider(new ConsoleLogProvider());
+
+            // Discord
+            Client = new DiscordSocketClient(new DiscordSocketConfig
             {
-                // How much logging do you want to see?
                 LogLevel = LogSeverity.Info,
-
-                // If you or another service needs to do anything with messages
-                // (eg. checking Reactions, checking the content of edited/deleted messages),
-                // you must set the MessageCacheSize. You may adjust the number as needed.
-                //MessageCacheSize = 50,
-
-                // If your platform doesn't have native WebSockets,
-                // add Discord.Net.Providers.WS4Net from NuGet,
-                // add the `using` at the top, and uncomment this line:
-                //WebSocketProvider = WS4NetProvider.Instance
             });
 
-            _commands = new CommandService(new CommandServiceConfig
+            Commands = new CommandService(new CommandServiceConfig
             {
-                // Again, log level:
                 LogLevel = LogSeverity.Info,
-
-                // There's a few more properties you can set,
-                // for example, case-insensitive commands.
                 CaseSensitiveCommands = false,
             });
 
-            //And add theme to IServiceProvider. Sevice provider can help you to bind your objects.
-            _service = new ServiceCollection()
-                .AddSingleton(_client)
+            Service = new ServiceCollection()
+                .AddSingleton(Client)
                 .AddSingleton<CommandService>()
                 .BuildServiceProvider();
 
-            _client.MessageReceived += Client_MessageReceived;
+            Client.MessageReceived += Client_MessageReceived;
 
-            // Subscribe the logging handler to both the client and the CommandService.
-            _client.Log += Log;
-            _commands.Log += Log;
-            await _commands.AddModulesAsync(Assembly.GetExecutingAssembly(), _service);
+            Client.Log += Log;
+            Commands.Log += Log;
+            await Commands.AddModulesAsync(Assembly.GetExecutingAssembly(), Service);
 
-            //  You can assign your bot token to a string, and pass that in to connect.
-            //  This is, however, insecure, particularly if you plan to have your code hosted in a public repository.
-            var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN");
+            await Client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DISCORD_TOKEN"));
+            await Client.StartAsync();
 
-            // Some alternative options would be to keep your token in an Environment Variable or a standalone file.
-            // var token = Environment.GetEnvironmentVariable("NameOfYourEnvironmentVariable");
-            // var token = File.ReadAllText("token.txt");
-            // var token = JsonConvert.DeserializeObject<AConfigurationClass>(File.ReadAllText("config.json")).Token;
+            IScheduler sched = await SchedulerBuilder.Create()
+                .UseDefaultThreadPool(x => x.MaxConcurrency = 1)
+                .BuildScheduler();
 
-            await _client.LoginAsync(TokenType.Bot, token);
-            await _client.StartAsync();
+            await sched.Start();
 
-            _client.Ready += () =>
+            var jobsAndTrigger = QuartzJobs.CreateJobsAndTrigger();
+
+            Client.Ready += async () =>
             {
                 Console.WriteLine("Bot is connected!");
-                return Task.CompletedTask;
+                foreach(var jobAndTrigger in jobsAndTrigger)
+                {
+                    await sched.ScheduleJob(jobAndTrigger.Job, jobAndTrigger.Trigger);
+                }
             };
-
-            Calendar.GetNextEvents();
 
             // Block this task until the program is closed.
             await Task.Delay(-1);
+
+            await sched.Shutdown();
         }
 
-
-        //Fired when we receive message
         private async Task Client_MessageReceived(SocketMessage arg)
         {
             int argPos = 0;
             var message = arg as SocketUserMessage;
-            var context = new SocketCommandContext(_client, message);
+            var context = new SocketCommandContext(Client, message);
 
-            if (message.HasStringPrefix("!", ref argPos))//If message has string prefix we execute command…
+            if (message.HasStringPrefix("!", ref argPos))
             {
-                var result = await _commands.ExecuteAsync(context, argPos, _service);//Executing…
+                var result = await Commands.ExecuteAsync(context, argPos, Service);
 
-                if (!result.IsSuccess)//If something went wrong…
-                {
-                    await context.Channel.SendMessageAsync(embed: new EmbedBuilder
-                    {
-                        Description = "Error",
-                        Color = Color.Red
-                    }.Build());
+                if (!result.IsSuccess)
                     Console.WriteLine("Error");
-                }
                 else
                     Console.WriteLine("Succesfull");
-                //Nice
             }
         }
 
@@ -125,57 +114,28 @@ namespace HLeBot
 		}
 	}
 
-    public class Commands : ModuleBase<SocketCommandContext>
+    public class ConsoleLogProvider : ILogProvider
     {
-        [Command("ckan")]
-        [Summary("Dis moi c'est quand la prochaine séance.")]
-        public Task CKanAsync()
+        public Logger GetLogger(string name)
         {
-            return ReplyAsync(Calendar.GetNextEvents());
+            return (level, func, exception, parameters) =>
+            {
+                if (level >= Quartz.Logging.LogLevel.Info && func != null)
+                {
+                    Console.WriteLine("[" + DateTime.Now.ToLongTimeString() + "] [" + level + "] " + func(), parameters);
+                }
+                return true;
+            };
         }
 
-        [Command("help")]
-        [Summary("Donne la liste des commandes.")]
-        public Task HelpAsync()
-            => ReplyAsync("`!ckan` vous donne la prochaine séance.");
-
-    }
-
-
-    public class Calendar
-    {
-        static string ApplicationName = "Google Calendar API .NET Quickstart";
-
-        public static string GetNextEvents()
+        public IDisposable OpenNestedContext(string message)
         {
-            // Create Google Calendar API service.
-            var service = new CalendarService(new BaseClientService.Initializer()
-            {
-                ApiKey = Environment.GetEnvironmentVariable("GOOGLE_API_KEY"),
-                ApplicationName = ApplicationName,
-            });
+            throw new NotImplementedException();
+        }
 
-            // Define parameters of request.
-            EventsResource.ListRequest request = service.Events.List(Environment.GetEnvironmentVariable("GOOGLE_CALENDAR"));
-            request.TimeMin = DateTime.Now;
-            request.ShowDeleted = false;
-            request.SingleEvents = true;
-            request.MaxResults = 10;
-            request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
-
-            // List events.
-            Events events = request.Execute();
-            Console.WriteLine("Upcoming events:");
-            if (events.Items != null && events.Items.Count > 0)
-            {
-                var eventItem = events.Items.First();
-                return "Voila : \n" + eventItem.Start.DateTime.ToString() + "\n" + eventItem.Summary + "\n" + eventItem.Location + "\n" + eventItem.Description;
-            }
-            else
-            {
-                Console.WriteLine("No upcoming events found.");
-                return "Je n'ai aucune date";
-            }
+        public IDisposable OpenMappedContext(string key, object value, bool destructure = false)
+        {
+            throw new NotImplementedException();
         }
     }
 }

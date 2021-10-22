@@ -9,6 +9,7 @@
     <PackageReference Include="Discord.Net" Version="2.4.0" />
     <PackageReference Include="Google.Apis.Calendar.v3" Version="1.54.0.2410" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+    <PackageReference Include="Quartz" Version="3.3.3" />
   </ItemGroup>
 
 </Project>
