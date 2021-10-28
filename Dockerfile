@@ -5,11 +5,12 @@ WORKDIR /app
 
 # Copy csproj and restore as distinct layers
 COPY *.csproj ./
+COPY nuget.config nuget.config
 RUN dotnet restore
 
 # Copy everything else and build
 COPY . .
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o out --packages https://nuget.emzi0767.com/api/v3/index.json
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1

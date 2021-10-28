@@ -1,11 +1,9 @@
-﻿using Discord;
-using Discord.Commands;
-using Discord.WebSocket;
-using Microsoft.Extensions.DependencyInjection;
+﻿using DSharpPlus;
+using DSharpPlus.CommandsNext;
+using DSharpPlus.Entities;
 using Quartz;
 using Quartz.Logging;
 using System;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace HLeBot
@@ -15,21 +13,20 @@ namespace HLeBot
 		public static void Main(string[] args)
 			=> new Program().MainAsync().GetAwaiter().GetResult();
 
-        private static DiscordSocketClient Client;
-        public static CommandService Commands;
+        private static DiscordClient Client;
         private static readonly ulong PlayerIdStr = 500148339883376641;
         private static readonly ulong ScenarioChannelId = 623907090297258005;
         private static readonly ulong LoloChannelId = 882470660776026152;
         public IServiceProvider Service { get; private set; }
 
-        public static IMessageChannel GetScenarioChannel()
+        public async static Task<DiscordChannel> GetScenarioChannel()
         {
-            return Client.GetChannel(ScenarioChannelId) as IMessageChannel;
+            return await Client.GetChannelAsync(ScenarioChannelId);
         }
 
-        public async static Task<IDMChannel> GetLoloChannel()
+        public async static Task<DiscordChannel> GetLoloChannel()
         {
-            return await Client.GetDMChannelAsync(LoloChannelId) as IDMChannel;
+            return await Client.GetChannelAsync(LoloChannelId);
         }
 
         public static string GetPlayerIdStr()
@@ -42,30 +39,19 @@ namespace HLeBot
             LogProvider.SetCurrentLogProvider(new ConsoleLogProvider());
 
             // Discord
-            Client = new DiscordSocketClient(new DiscordSocketConfig
+            Client = new DiscordClient(new DiscordConfiguration
             {
-                LogLevel = LogSeverity.Info,
+                MinimumLogLevel = Microsoft.Extensions.Logging.LogLevel.Debug,
+                Token = Environment.GetEnvironmentVariable("DISCORD_TOKEN"),
+                TokenType = TokenType.Bot
             });
 
-            Commands = new CommandService(new CommandServiceConfig
+            var commands = Client.UseCommandsNext(new CommandsNextConfiguration()
             {
-                LogLevel = LogSeverity.Info,
-                CaseSensitiveCommands = false,
+                StringPrefixes = new[] { "!" }
             });
-
-            Service = new ServiceCollection()
-                .AddSingleton(Client)
-                .AddSingleton<CommandService>()
-                .BuildServiceProvider();
-
-            Client.MessageReceived += Client_MessageReceived;
-
-            Client.Log += Log;
-            Commands.Log += Log;
-            await Commands.AddModulesAsync(Assembly.GetExecutingAssembly(), Service);
-
-            await Client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DISCORD_TOKEN"));
-            await Client.StartAsync();
+            commands.RegisterCommands<Commands>();
+            commands.SetHelpFormatter<CustomHelpFormatter>();
 
             IScheduler sched = await SchedulerBuilder.Create()
                 .UseDefaultThreadPool(x => x.MaxConcurrency = 1)
@@ -75,43 +61,18 @@ namespace HLeBot
 
             var jobsAndTrigger = QuartzJobs.CreateJobsAndTrigger();
 
-            Client.Ready += async () =>
+            await Client.ConnectAsync();
+            Console.WriteLine("Bot is connected!");
+            foreach(var jobAndTrigger in jobsAndTrigger)
             {
-                Console.WriteLine("Bot is connected!");
-                foreach(var jobAndTrigger in jobsAndTrigger)
-                {
-                    await sched.ScheduleJob(jobAndTrigger.Job, jobAndTrigger.Trigger);
-                }
-            };
+                await sched.ScheduleJob(jobAndTrigger.Job, jobAndTrigger.Trigger);
+            }
 
             // Block this task until the program is closed.
             await Task.Delay(-1);
 
             await sched.Shutdown();
         }
-
-        private async Task Client_MessageReceived(SocketMessage arg)
-        {
-            int argPos = 0;
-            var message = arg as SocketUserMessage;
-            var context = new SocketCommandContext(Client, message);
-
-            if (message.HasStringPrefix("!", ref argPos))
-            {
-                var result = await Commands.ExecuteAsync(context, argPos, Service);
-
-                if (!result.IsSuccess)
-                    Console.WriteLine("Error");
-                else
-                    Console.WriteLine("Succesfull");
-            }
-        }
-
-        private Task Log(LogMessage msg)
-		{
-			Console.WriteLine(msg.ToString());
-			return Task.CompletedTask;
-		}
 	}
 
     public class ConsoleLogProvider : ILogProvider

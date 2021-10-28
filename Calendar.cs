@@ -1,4 +1,4 @@
-﻿using Discord;
+﻿using DSharpPlus.Entities;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
@@ -43,14 +43,14 @@ namespace HLeBot
             }
         }
 
-        public static Embed CreateEmbed(Event eventItem)
+        public static DiscordEmbed CreateEmbed(Event eventItem)
         {
             var locationString = eventItem.Location.Split(" - ")[1];
-            return (new EmbedBuilder()
+            return (new DiscordEmbedBuilder()
             {
                 Title = eventItem.Summary,
                 Url = "https://www.google.com/maps/search/?api=1&query=" + Uri.EscapeUriString(locationString),
-                Color = Color.DarkBlue,
+                Color = DiscordColor.DarkBlue,
                 Description = DateTime.Parse(eventItem.Start.DateTime.ToString()).ToString("dddd dd MMMM yyyy, H:mm", CultureInfo.CreateSpecificCulture("fr-FR")) + "\nChez : " + eventItem.Location + "\n" + eventItem.Description
             }).Build();
         }

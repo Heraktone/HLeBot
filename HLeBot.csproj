@@ -6,9 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.4.0" />
-    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.54.0.2410" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+    <PackageReference Include="DSharpPlus" Version="4.2.0-nightly-01038" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.2.0-nightly-01038" />
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.55.0.2410" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0-rc.2.21480.5" />
     <PackageReference Include="Quartz" Version="3.3.3" />
   </ItemGroup>
 

@@ -1,5 +1,4 @@
-﻿using Discord;
-using Quartz;
+﻿using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HLeBot
 {
-	public class JobsAndTrigger
+    public class JobsAndTrigger
 	{
 		public IJobDetail Job;
 		public ITrigger Trigger;
@@ -60,9 +59,10 @@ namespace HLeBot
 			if (totalHoursDiff == -3)
 			{
 				var embed = Utils.CreateEmbedGF1();
-				var chnl = Program.GetScenarioChannel();
-				var message = await chnl.SendMessageAsync($"{Program.GetPlayerIdStr()} On mange quoi ?", false, embed.Reponse);
-				await message.AddReactionsAsync(embed.Emotes.Select(e => new Emoji(e)).ToArray());
+				var chnl = await Program.GetScenarioChannel();
+				var message = await chnl.SendMessageAsync($"{Program.GetPlayerIdStr()} On mange quoi ?", embed.Reponse);
+				await Utils.SendReactionsToMessage(message, embed.Emotes.ToList());
+				await message.CreateThreadAsync($"Discussion sur le repas du {DateTime.Now.Date}", DSharpPlus.AutoArchiveDuration.Hour);
 			}
 		}
 	}
@@ -81,8 +81,8 @@ namespace HLeBot
 			if (totalDaysDiff == -1)
             {
 				var embed = Calendar.CreateEmbed(nextEvent);
-				var chnl = Program.GetScenarioChannel();
-				await chnl.SendMessageAsync($"{Program.GetPlayerIdStr()} N'oubliez pas !", false, embed);
+				var chnl = await Program.GetScenarioChannel();
+				await chnl.SendMessageAsync($"{Program.GetPlayerIdStr()} N'oubliez pas !", embed);
 				await Console.Out.WriteLineAsync("Reminder sent");
 			}
 		}

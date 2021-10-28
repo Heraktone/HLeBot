@@ -1,64 +1,82 @@
-﻿using Discord;
-using Discord.Commands;
+﻿using DSharpPlus.CommandsNext;
+using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.CommandsNext.Converters;
+using DSharpPlus.CommandsNext.Entities;
+using DSharpPlus.Entities;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HLeBot
 {
-    public class Commands : ModuleBase<SocketCommandContext>
+    public class Commands : BaseCommandModule
     {
         [Command("ckan")]
-        [Summary("Dis moi c'est quand et où la prochaine séance.")]
-        public Task CKanAsync()
+        [Description("Dis moi c'est quand et où la prochaine séance.")]
+        public Task CKanAsync(CommandContext ctx)
         {
             var eventItem = Calendar.GetNextEvents();
             if (eventItem == null)
             {
-                Context.Message.ReplyAsync("Je n'ai aucune date : https://calendar.google.com/calendar/embed?src=l0lml0k1q8ackrm1o8uscub5o8%40group.calendar.google.com&ctz=America%2FToronto");
+                ctx.Message.RespondAsync("Je n'ai aucune date : https://calendar.google.com/calendar/embed?src=l0lml0k1q8ackrm1o8uscub5o8%40group.calendar.google.com&ctz=America%2FToronto");
             }
 
             var embed = Calendar.CreateEmbed(eventItem);
-            return Context.Message.ReplyAsync(null, false, embed);
+            return ctx.Message.RespondAsync(null, embed);
         }
 
         [Command("gf1")]
-        [Summary("Lance un sondage pour savoir quoi manger.")]
-        public async Task GF1Async()
+        [Description("Lance un sondage pour savoir quoi manger.")]
+        public async Task GF1Async(CommandContext ctx)
         {
             var embed = Utils.CreateEmbedGF1();
-            var message = await Context.Message.ReplyAsync("On mange quoi ?", false, embed.Reponse);
-            await message.AddReactionsAsync(embed.Emotes.Select(e => new Emoji(e)).ToArray());
+            var message = await ctx.Message.RespondAsync("On mange quoi ?", embed.Reponse);
+            await Utils.SendReactionsToMessage(message, embed.Emotes.ToList());
         }
 
         [Command("li1")]
-        [Summary("Lien vers le sheet d'Orga.")]
-        public async Task Li1()
+        [Description("Lien vers le sheet d'Orga.")]
+        public async Task Li1(CommandContext ctx)
         {
-            await Context.Message.ReplyAsync("https://docs.google.com/spreadsheets/d/1FagGUeSOeSoIw0ANokQL46tF4MzbKeakgaWhY_RCHEw/edit?usp=sharing");
+            await ctx.Message.RespondAsync("https://docs.google.com/spreadsheets/d/1FagGUeSOeSoIw0ANokQL46tF4MzbKeakgaWhY_RCHEw/edit?usp=sharing \nhttps://calendar.google.com/calendar/embed?src=l0lml0k1q8ackrm1o8uscub5o8%40group.calendar.google.com&ctz=America%2FToronto");
         }
 
         [Command("plsadd")]
-        [Summary("Demande l'ajout d'une fonctionnalité au créateur.")]
-        public async Task PlsAdd([Remainder] string text)
+        [Description("Demande l'ajout d'une fonctionnalité au créateur.")]
+        public async Task PlsAdd(CommandContext ctx, [RemainingText] string text)
         {
-            await (await Program.GetLoloChannel()).SendMessageAsync($"Demande d'ajout de {Context.Message.Author} sur le channel {Context.Message.Channel.Name} : " + text);
+            await (await Program.GetLoloChannel()).SendMessageAsync($"Demande d'ajout de {ctx.Message.Author} sur le channel {ctx.Message.Channel.Name} : " + text);
+        }
+    }
+
+    public class CustomHelpFormatter : BaseHelpFormatter
+    {
+        protected DiscordEmbedBuilder EmbedBuilder;
+
+        public CustomHelpFormatter(CommandContext ctx) : base(ctx)
+        {
+            EmbedBuilder = new DiscordEmbedBuilder();
         }
 
-        [Command("help")]
-        [Summary("Donne la liste des commandes.")]
-        public async Task HelpAsync()
+        public override BaseHelpFormatter WithCommand(Command command)
         {
-            string helpCommand = "";
+            EmbedBuilder.AddField(command.Name, command.Description);
+            return this;
+        }
 
-            foreach (var module in Program.Commands.Modules)
+        public override BaseHelpFormatter WithSubcommands(IEnumerable<Command> cmds)
+        {
+            foreach (var cmd in cmds)
             {
-                foreach (var cmd in module.Commands)
-                {
-                    helpCommand += $"`!{cmd.Aliases.First()}` : {cmd.Summary}\n";
-                }
+                EmbedBuilder.AddField(cmd.Name, cmd.Description);
             }
 
-            await Context.Message.ReplyAsync(helpCommand);
+            return this;
+        }
+
+        public override CommandHelpMessage Build()
+        {
+            return new CommandHelpMessage(embed: EmbedBuilder);
         }
     }
 }
