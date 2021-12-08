@@ -3,6 +3,7 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -12,7 +13,22 @@ namespace HLeBot
     {
         static string ApplicationName = "Google Calendar API .NET Quickstart";
 
-        public static Event GetNextEvents()
+        public static Event GetNextEvent()
+        {
+            var events = GetNextEvents();
+            Console.WriteLine("Upcoming events:");
+            if (events.Items != null && events.Items.Count > 0)
+            {
+                return events.Items.First();
+            }
+            else
+            {
+                Console.WriteLine("No upcoming events found.");
+                return null;
+            }
+        }
+
+        public static Events GetNextEvents(int maxResult = 1)
         {
             // Create Google Calendar API service.
             var service = new CalendarService(new BaseClientService.Initializer()
@@ -26,21 +42,11 @@ namespace HLeBot
             request.TimeMin = DateTime.Now;
             request.ShowDeleted = false;
             request.SingleEvents = true;
-            request.MaxResults = 1;
+            request.MaxResults = maxResult;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
             // List events.
-            Events events = request.Execute();
-            Console.WriteLine("Upcoming events:");
-            if (events.Items != null && events.Items.Count > 0)
-            {
-                return events.Items.First();
-            }
-            else
-            {
-                Console.WriteLine("No upcoming events found.");
-                return null;
-            }
+            return request.Execute();
         }
 
         public static DiscordEmbed CreateEmbed(Event eventItem)

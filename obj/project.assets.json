@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "DSharpPlus/4.2.0-nightly-01038": {
+      "DSharpPlus/4.2.0-nightly-01042": {
         "type": "package",
         "dependencies": {
           "Emzi0767.Common": "2.6.2",
@@ -22,10 +22,10 @@
           "lib/netstandard2.0/DSharpPlus.dll": {}
         }
       },
-      "DSharpPlus.CommandsNext/4.2.0-nightly-01038": {
+      "DSharpPlus.CommandsNext/4.2.0-nightly-01042": {
         "type": "package",
         "dependencies": {
-          "DSharpPlus": "4.2.0-nightly-01038",
+          "DSharpPlus": "4.2.0-nightly-01042",
           "Microsoft.Extensions.DependencyInjection": "5.0.1"
         },
         "compile": {
@@ -33,6 +33,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.CommandsNext.dll": {}
+        }
+      },
+      "DSharpPlus.SlashCommands/4.2.0-nightly-01042": {
+        "type": "package",
+        "dependencies": {
+          "DSharpPlus": "4.2.0-nightly-01042",
+          "Microsoft.Extensions.DependencyInjection": "5.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/DSharpPlus.SlashCommands.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DSharpPlus.SlashCommands.dll": {}
         }
       },
       "Emzi0767.Common/2.6.2": {
@@ -77,7 +90,7 @@
           "lib/netstandard2.0/Google.Apis.Auth.dll": {}
         }
       },
-      "Google.Apis.Calendar.v3/1.55.0.2410": {
+      "Google.Apis.Calendar.v3/1.55.0.2490": {
         "type": "package",
         "dependencies": {
           "Google.Apis": "1.55.0",
@@ -102,11 +115,11 @@
           "lib/netstandard2.0/Google.Apis.Core.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/6.0.0-rc.2.21480.5": {
+      "Microsoft.Extensions.DependencyInjection/6.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0-rc.2.21480.5",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0-rc.2.21480.5"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
           "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll": {}
@@ -118,7 +131,7 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0-rc.2.21480.5": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
@@ -882,7 +895,7 @@
           "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/6.0.0-rc.2.21480.5": {
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
         "type": "package",
         "compile": {
           "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -1396,30 +1409,43 @@
     }
   },
   "libraries": {
-    "DSharpPlus/4.2.0-nightly-01038": {
-      "sha512": "lvgXMKvc7slYqfOuq5/vZgCll+qAUkk46ULrHd2GmTl33WOY3z8qly3RtM8ak539xO89rBThGpDIQ9IhJiavbg==",
+    "DSharpPlus/4.2.0-nightly-01042": {
+      "sha512": "zM12CG5O5Y5YEeZTol30It6nkMAK0H80lENBisTFdx86RKWNVLtYUQ11TKOZM9hoPgRb4H+02NbqaWSgU+pf8Q==",
       "type": "package",
-      "path": "dsharpplus/4.2.0-nightly-01038",
+      "path": "dsharpplus/4.2.0-nightly-01042",
       "files": [
         ".nupkg.metadata",
-        "dsharpplus.4.2.0-nightly-01038.nupkg.sha512",
+        "dsharpplus.4.2.0-nightly-01042.nupkg.sha512",
         "dsharpplus.nuspec",
         "dsharpplus.png",
         "lib/netstandard2.0/DSharpPlus.dll",
         "lib/netstandard2.0/DSharpPlus.xml"
       ]
     },
-    "DSharpPlus.CommandsNext/4.2.0-nightly-01038": {
-      "sha512": "fUJBOHRUXpm1w6d7bZ5HrNcHbkYI9UeJE8xNj8PHxDV+t6BeF99D5E20IKEi216sX+/IsDh+YjalyXzJBx+TBA==",
+    "DSharpPlus.CommandsNext/4.2.0-nightly-01042": {
+      "sha512": "Z7OPq6j0oYaxKiZjPVCksJNbpRNrphGCfnNBGlV7Tv18MAgw+5z7loyTqCKtCm21W2Az6xvS4qtaqc23NsjXww==",
       "type": "package",
-      "path": "dsharpplus.commandsnext/4.2.0-nightly-01038",
+      "path": "dsharpplus.commandsnext/4.2.0-nightly-01042",
       "files": [
         ".nupkg.metadata",
-        "dsharpplus.commandsnext.4.2.0-nightly-01038.nupkg.sha512",
+        "dsharpplus.commandsnext.4.2.0-nightly-01042.nupkg.sha512",
         "dsharpplus.commandsnext.nuspec",
         "dsharpplus.png",
         "lib/netstandard2.0/DSharpPlus.CommandsNext.dll",
         "lib/netstandard2.0/DSharpPlus.CommandsNext.xml"
+      ]
+    },
+    "DSharpPlus.SlashCommands/4.2.0-nightly-01042": {
+      "sha512": "uTFJqPXBTLK9fkHTWFCmUtbLj2AnhKKoem8ygFkyu41R2DoqOXe95ARJZr0hNr1BrQnNmsb5I0RF+QpSYjLYfA==",
+      "type": "package",
+      "path": "dsharpplus.slashcommands/4.2.0-nightly-01042",
+      "files": [
+        ".nupkg.metadata",
+        "dsharpplus.png",
+        "dsharpplus.slashcommands.4.2.0-nightly-01042.nupkg.sha512",
+        "dsharpplus.slashcommands.nuspec",
+        "lib/netstandard2.0/DSharpPlus.SlashCommands.dll",
+        "lib/netstandard2.0/DSharpPlus.SlashCommands.xml"
       ]
     },
     "Emzi0767.Common/2.6.2": {
@@ -1491,16 +1517,16 @@
         "lib/netstandard2.0/Google.Apis.Auth.xml"
       ]
     },
-    "Google.Apis.Calendar.v3/1.55.0.2410": {
-      "sha512": "dBYSTD49JdIoF35TOcstspbydAEbuZtsPsD/l8ytlwf0NPnHQnH28DzVP1Sjm7O5ab3gXaAIan+SpMpCkendCQ==",
+    "Google.Apis.Calendar.v3/1.55.0.2490": {
+      "sha512": "3n1vTrQdFwYdtqa8meX6SD6f/zhKNTTLSlisLGlXVU7JEuIS+QdOnuASpocfB/2TniAAxDiMUp64eEwXiBVZqw==",
       "type": "package",
-      "path": "google.apis.calendar.v3/1.55.0.2410",
+      "path": "google.apis.calendar.v3/1.55.0.2490",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.apis.calendar.v3.1.55.0.2410.nupkg.sha512",
+        "google.apis.calendar.v3.1.55.0.2490.nupkg.sha512",
         "google.apis.calendar.v3.nuspec",
         "lib/net40/Google.Apis.Calendar.v3.dll",
         "lib/net40/Google.Apis.Calendar.v3.pdb",
@@ -1541,10 +1567,10 @@
         "lib/netstandard2.0/Google.Apis.Core.xml"
       ]
     },
-    "Microsoft.Extensions.DependencyInjection/6.0.0-rc.2.21480.5": {
-      "sha512": "oLjs0qdNy7ddQfcmMaOwx4KXIreo3H7j80N33iaKupAGOKgnEzSGXYIGZxQVHh++cobWmmDQouw3IkP45W9O/w==",
+    "Microsoft.Extensions.DependencyInjection/6.0.0": {
+      "sha512": "k6PWQMuoBDGGHOQTtyois2u4AwyVcIwL2LaSLlTZQm2CYcJ1pxbt6jfAnpWmzENA/wfrYRI/X9DTLoUkE4AsLw==",
       "type": "package",
-      "path": "microsoft.extensions.dependencyinjection/6.0.0-rc.2.21480.5",
+      "path": "microsoft.extensions.dependencyinjection/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1561,15 +1587,15 @@
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.xml",
-        "microsoft.extensions.dependencyinjection.6.0.0-rc.2.21480.5.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0-rc.2.21480.5": {
-      "sha512": "hi3YC5dY6zjbV5ZNsi/UvKHNTpP4wkvaRXchH0FXGdU/pHDbmua9NAKLu9WCTs5DOnOXtvAbly/I6IZpGBzXSA==",
+    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
+      "sha512": "xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg==",
       "type": "package",
-      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0-rc.2.21480.5",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1586,7 +1612,7 @@
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
-        "microsoft.extensions.dependencyinjection.abstractions.6.0.0-rc.2.21480.5.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -3484,10 +3510,10 @@
         "system.runtime.nuspec"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/6.0.0-rc.2.21480.5": {
-      "sha512": "Xn/HBsyA/Fsp0gGZpdJcVBluc0MDXisNHHiYXTdreb1Nl4PEid7L6w3JcWrOU9xQFoL5Ep7ySnNDTn1BVVy26Q==",
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/6.0.0-rc.2.21480.5",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3504,7 +3530,7 @@
         "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.6.0.0-rc.2.21480.5.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -4790,10 +4816,11 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "DSharpPlus >= 4.2.0-nightly-01038",
-      "DSharpPlus.CommandsNext >= 4.2.0-nightly-01038",
-      "Google.Apis.Calendar.v3 >= 1.55.0.2410",
-      "Microsoft.Extensions.DependencyInjection >= 6.0.0-rc.2.21480.5",
+      "DSharpPlus >= 4.2.0-nightly-01042",
+      "DSharpPlus.CommandsNext >= 4.2.0-nightly-01042",
+      "DSharpPlus.SlashCommands >= 4.2.0-nightly-01042",
+      "Google.Apis.Calendar.v3 >= 1.55.0.2490",
+      "Microsoft.Extensions.DependencyInjection >= 6.0.0",
       "Quartz >= 3.3.3"
     ]
   },
@@ -4814,6 +4841,7 @@
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+        "E:\\VSProjects\\HLeBot\\NuGet.Config",
         "C:\\Users\\ciolt\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -4846,19 +4874,23 @@
         "dependencies": {
           "DSharpPlus": {
             "target": "Package",
-            "version": "[4.2.0-nightly-01038, )"
+            "version": "[4.2.0-nightly-01042, )"
           },
           "DSharpPlus.CommandsNext": {
             "target": "Package",
-            "version": "[4.2.0-nightly-01038, )"
+            "version": "[4.2.0-nightly-01042, )"
+          },
+          "DSharpPlus.SlashCommands": {
+            "target": "Package",
+            "version": "[4.2.0-nightly-01042, )"
           },
           "Google.Apis.Calendar.v3": {
             "target": "Package",
-            "version": "[1.55.0.2410, )"
+            "version": "[1.55.0.2490, )"
           },
           "Microsoft.Extensions.DependencyInjection": {
             "target": "Package",
-            "version": "[6.0.0-rc.2.21480.5, )"
+            "version": "[6.0.0, )"
           },
           "Quartz": {
             "target": "Package",

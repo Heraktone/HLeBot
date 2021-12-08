@@ -27,12 +27,12 @@ namespace HLeBot
             return response;
         }
 
-        public async static Task SendReactionsToMessage(DiscordMessage message, List<string> Emotes)
+        public async static Task SendReactionsToMessage(DiscordMessage message, List<string> Emotes, bool isName = false)
         {
             foreach (var e in Emotes)
             {
                 await Task.Delay(TimeSpan.FromSeconds(1));
-                await message.CreateReactionAsync(DiscordEmoji.FromUnicode(e));
+                await message.CreateReactionAsync(isName ? DiscordEmoji.FromName(Program.Client, e) : DiscordEmoji.FromUnicode(e));
             }
         }
     }

@@ -49,7 +49,7 @@ namespace HLeBot
 	{
 		public async Task Execute(IJobExecutionContext context)
 		{
-			var nextEvent = Calendar.GetNextEvents();
+			var nextEvent = Calendar.GetNextEvent();
 			if (nextEvent == null || !nextEvent.Start.DateTime.HasValue|| (int)(DateTime.Today - nextEvent.Start.DateTime.Value.Date).TotalDays != 0)
 			{
 				return;
@@ -62,7 +62,7 @@ namespace HLeBot
 				var chnl = await Program.GetScenarioChannel();
 				var message = await chnl.SendMessageAsync($"{Program.GetPlayerIdStr()} On mange quoi ?", embed.Reponse);
 				await Utils.SendReactionsToMessage(message, embed.Emotes.ToList());
-				await message.CreateThreadAsync($"Discussion sur le repas du {DateTime.Now.Date}", DSharpPlus.AutoArchiveDuration.Hour);
+				await message.CreateThreadAsync($"Discussion sur le repas du {DateTime.Now.Date.ToString("dd-MM-yyyy")}", DSharpPlus.AutoArchiveDuration.Hour);
 			}
 		}
 	}
@@ -71,7 +71,7 @@ namespace HLeBot
 	{
 		public async Task Execute(IJobExecutionContext context)
 		{
-			var nextEvent = Calendar.GetNextEvents();
+			var nextEvent = Calendar.GetNextEvent();
 			if (nextEvent == null || !nextEvent.Start.DateTime.HasValue)
 			{
 				return;
@@ -82,7 +82,7 @@ namespace HLeBot
             {
 				var embed = Calendar.CreateEmbed(nextEvent);
 				var chnl = await Program.GetScenarioChannel();
-				await chnl.SendMessageAsync($"{Program.GetPlayerIdStr()} N'oubliez pas !", embed);
+				await chnl.SendMessageAsync($"{Program.GetPlayerIdStr()}{(nextEvent.Location.Contains("Thibault") ? "<@&134346294608003072>" : "")} N'oubliez pas !", embed);
 				await Console.Out.WriteLineAsync("Reminder sent");
 			}
 		}

@@ -1,6 +1,6 @@
 ﻿using DSharpPlus;
-using DSharpPlus.CommandsNext;
 using DSharpPlus.Entities;
+using DSharpPlus.SlashCommands;
 using Quartz;
 using Quartz.Logging;
 using System;
@@ -13,8 +13,8 @@ namespace HLeBot
 		public static void Main(string[] args)
 			=> new Program().MainAsync().GetAwaiter().GetResult();
 
-        private static DiscordClient Client;
-        private static readonly ulong PlayerIdStr = 500148339883376641;
+        public static DiscordClient Client;
+        private static readonly ulong PlayerId = 500148339883376641;
         private static readonly ulong ScenarioChannelId = 623907090297258005;
         private static readonly ulong LoloChannelId = 882470660776026152;
         public IServiceProvider Service { get; private set; }
@@ -31,7 +31,7 @@ namespace HLeBot
 
         public static string GetPlayerIdStr()
         {
-            return $"<@&{PlayerIdStr}>";
+            return $"<@&{PlayerId}>";
         }
 
         public async Task MainAsync()
@@ -46,12 +46,8 @@ namespace HLeBot
                 TokenType = TokenType.Bot
             });
 
-            var commands = Client.UseCommandsNext(new CommandsNextConfiguration()
-            {
-                StringPrefixes = new[] { "!" }
-            });
+            var commands = Client.UseSlashCommands();
             commands.RegisterCommands<Commands>();
-            commands.SetHelpFormatter<CustomHelpFormatter>();
 
             IScheduler sched = await SchedulerBuilder.Create()
                 .UseDefaultThreadPool(x => x.MaxConcurrency = 1)

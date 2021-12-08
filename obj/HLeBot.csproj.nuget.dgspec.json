@@ -17,6 +17,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "E:\\VSProjects\\HLeBot\\NuGet.Config",
           "C:\\Users\\ciolt\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -49,19 +50,23 @@
           "dependencies": {
             "DSharpPlus": {
               "target": "Package",
-              "version": "[4.2.0-nightly-01038, )"
+              "version": "[4.2.0-nightly-01042, )"
             },
             "DSharpPlus.CommandsNext": {
               "target": "Package",
-              "version": "[4.2.0-nightly-01038, )"
+              "version": "[4.2.0-nightly-01042, )"
+            },
+            "DSharpPlus.SlashCommands": {
+              "target": "Package",
+              "version": "[4.2.0-nightly-01042, )"
             },
             "Google.Apis.Calendar.v3": {
               "target": "Package",
-              "version": "[1.55.0.2410, )"
+              "version": "[1.55.0.2490, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
-              "version": "[6.0.0-rc.2.21480.5, )"
+              "version": "[6.0.0, )"
             },
             "Quartz": {
               "target": "Package",

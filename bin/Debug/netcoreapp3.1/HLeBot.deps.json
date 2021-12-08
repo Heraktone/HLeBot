@@ -8,17 +8,18 @@
     ".NETCoreApp,Version=v3.1": {
       "HLeBot/1.0.0": {
         "dependencies": {
-          "DSharpPlus": "4.2.0-nightly-01038",
-          "DSharpPlus.CommandsNext": "4.2.0-nightly-01038",
-          "Google.Apis.Calendar.v3": "1.55.0.2410",
-          "Microsoft.Extensions.DependencyInjection": "6.0.0-rc.2.21480.5",
+          "DSharpPlus": "4.2.0-nightly-01042",
+          "DSharpPlus.CommandsNext": "4.2.0-nightly-01042",
+          "DSharpPlus.SlashCommands": "4.2.0-nightly-01042",
+          "Google.Apis.Calendar.v3": "1.55.0.2490",
+          "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Quartz": "3.3.3"
         },
         "runtime": {
           "HLeBot.dll": {}
         }
       },
-      "DSharpPlus/4.2.0-nightly-01038": {
+      "DSharpPlus/4.2.0-nightly-01042": {
         "dependencies": {
           "Emzi0767.Common": "2.6.2",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
@@ -32,20 +33,32 @@
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.dll": {
-            "assemblyVersion": "4.2.0.1038",
-            "fileVersion": "4.2.0.1038"
+            "assemblyVersion": "4.2.0.1042",
+            "fileVersion": "4.2.0.1042"
           }
         }
       },
-      "DSharpPlus.CommandsNext/4.2.0-nightly-01038": {
+      "DSharpPlus.CommandsNext/4.2.0-nightly-01042": {
         "dependencies": {
-          "DSharpPlus": "4.2.0-nightly-01038",
-          "Microsoft.Extensions.DependencyInjection": "6.0.0-rc.2.21480.5"
+          "DSharpPlus": "4.2.0-nightly-01042",
+          "Microsoft.Extensions.DependencyInjection": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.CommandsNext.dll": {
-            "assemblyVersion": "4.2.0.1038",
-            "fileVersion": "4.2.0.1038"
+            "assemblyVersion": "4.2.0.1042",
+            "fileVersion": "4.2.0.1042"
+          }
+        }
+      },
+      "DSharpPlus.SlashCommands/4.2.0-nightly-01042": {
+        "dependencies": {
+          "DSharpPlus": "4.2.0-nightly-01042",
+          "Microsoft.Extensions.DependencyInjection": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DSharpPlus.SlashCommands.dll": {
+            "assemblyVersion": "4.2.0.1042",
+            "fileVersion": "4.2.0.1042"
           }
         }
       },
@@ -53,7 +66,7 @@
         "dependencies": {
           "System.Collections.Immutable": "5.0.0",
           "System.Memory": "4.5.4",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0-rc.2.21480.5",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
           "System.ValueTuple": "4.5.0"
         },
         "runtime": {
@@ -90,15 +103,15 @@
           }
         }
       },
-      "Google.Apis.Calendar.v3/1.55.0.2410": {
+      "Google.Apis.Calendar.v3/1.55.0.2490": {
         "dependencies": {
           "Google.Apis": "1.55.0",
           "Google.Apis.Auth": "1.55.0"
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Calendar.v3.dll": {
-            "assemblyVersion": "1.55.0.2410",
-            "fileVersion": "1.55.0.2410"
+            "assemblyVersion": "1.55.0.2490",
+            "fileVersion": "1.55.0.2490"
           }
         }
       },
@@ -113,23 +126,23 @@
           }
         }
       },
-      "Microsoft.Extensions.DependencyInjection/6.0.0-rc.2.21480.5": {
+      "Microsoft.Extensions.DependencyInjection/6.0.0": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0-rc.2.21480.5",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0-rc.2.21480.5"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.48005"
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0-rc.2.21480.5": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
         "runtime": {
           "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.48005"
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
@@ -571,11 +584,11 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/6.0.0-rc.2.21480.5": {
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
         "runtime": {
           "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.48005"
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
@@ -873,19 +886,26 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DSharpPlus/4.2.0-nightly-01038": {
+    "DSharpPlus/4.2.0-nightly-01042": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-lvgXMKvc7slYqfOuq5/vZgCll+qAUkk46ULrHd2GmTl33WOY3z8qly3RtM8ak539xO89rBThGpDIQ9IhJiavbg==",
-      "path": "dsharpplus/4.2.0-nightly-01038",
-      "hashPath": "dsharpplus.4.2.0-nightly-01038.nupkg.sha512"
+      "sha512": "sha512-zM12CG5O5Y5YEeZTol30It6nkMAK0H80lENBisTFdx86RKWNVLtYUQ11TKOZM9hoPgRb4H+02NbqaWSgU+pf8Q==",
+      "path": "dsharpplus/4.2.0-nightly-01042",
+      "hashPath": "dsharpplus.4.2.0-nightly-01042.nupkg.sha512"
     },
-    "DSharpPlus.CommandsNext/4.2.0-nightly-01038": {
+    "DSharpPlus.CommandsNext/4.2.0-nightly-01042": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fUJBOHRUXpm1w6d7bZ5HrNcHbkYI9UeJE8xNj8PHxDV+t6BeF99D5E20IKEi216sX+/IsDh+YjalyXzJBx+TBA==",
-      "path": "dsharpplus.commandsnext/4.2.0-nightly-01038",
-      "hashPath": "dsharpplus.commandsnext.4.2.0-nightly-01038.nupkg.sha512"
+      "sha512": "sha512-Z7OPq6j0oYaxKiZjPVCksJNbpRNrphGCfnNBGlV7Tv18MAgw+5z7loyTqCKtCm21W2Az6xvS4qtaqc23NsjXww==",
+      "path": "dsharpplus.commandsnext/4.2.0-nightly-01042",
+      "hashPath": "dsharpplus.commandsnext.4.2.0-nightly-01042.nupkg.sha512"
+    },
+    "DSharpPlus.SlashCommands/4.2.0-nightly-01042": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uTFJqPXBTLK9fkHTWFCmUtbLj2AnhKKoem8ygFkyu41R2DoqOXe95ARJZr0hNr1BrQnNmsb5I0RF+QpSYjLYfA==",
+      "path": "dsharpplus.slashcommands/4.2.0-nightly-01042",
+      "hashPath": "dsharpplus.slashcommands.4.2.0-nightly-01042.nupkg.sha512"
     },
     "Emzi0767.Common/2.6.2": {
       "type": "package",
@@ -908,12 +928,12 @@
       "path": "google.apis.auth/1.55.0",
       "hashPath": "google.apis.auth.1.55.0.nupkg.sha512"
     },
-    "Google.Apis.Calendar.v3/1.55.0.2410": {
+    "Google.Apis.Calendar.v3/1.55.0.2490": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-dBYSTD49JdIoF35TOcstspbydAEbuZtsPsD/l8ytlwf0NPnHQnH28DzVP1Sjm7O5ab3gXaAIan+SpMpCkendCQ==",
-      "path": "google.apis.calendar.v3/1.55.0.2410",
-      "hashPath": "google.apis.calendar.v3.1.55.0.2410.nupkg.sha512"
+      "sha512": "sha512-3n1vTrQdFwYdtqa8meX6SD6f/zhKNTTLSlisLGlXVU7JEuIS+QdOnuASpocfB/2TniAAxDiMUp64eEwXiBVZqw==",
+      "path": "google.apis.calendar.v3/1.55.0.2490",
+      "hashPath": "google.apis.calendar.v3.1.55.0.2490.nupkg.sha512"
     },
     "Google.Apis.Core/1.55.0": {
       "type": "package",
@@ -922,19 +942,19 @@
       "path": "google.apis.core/1.55.0",
       "hashPath": "google.apis.core.1.55.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.DependencyInjection/6.0.0-rc.2.21480.5": {
+    "Microsoft.Extensions.DependencyInjection/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-oLjs0qdNy7ddQfcmMaOwx4KXIreo3H7j80N33iaKupAGOKgnEzSGXYIGZxQVHh++cobWmmDQouw3IkP45W9O/w==",
-      "path": "microsoft.extensions.dependencyinjection/6.0.0-rc.2.21480.5",
-      "hashPath": "microsoft.extensions.dependencyinjection.6.0.0-rc.2.21480.5.nupkg.sha512"
+      "sha512": "sha512-k6PWQMuoBDGGHOQTtyois2u4AwyVcIwL2LaSLlTZQm2CYcJ1pxbt6jfAnpWmzENA/wfrYRI/X9DTLoUkE4AsLw==",
+      "path": "microsoft.extensions.dependencyinjection/6.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0-rc.2.21480.5": {
+    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hi3YC5dY6zjbV5ZNsi/UvKHNTpP4wkvaRXchH0FXGdU/pHDbmua9NAKLu9WCTs5DOnOXtvAbly/I6IZpGBzXSA==",
-      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0-rc.2.21480.5",
-      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.6.0.0-rc.2.21480.5.nupkg.sha512"
+      "sha512": "sha512-xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging.Abstractions/5.0.0": {
       "type": "package",
@@ -1300,12 +1320,12 @@
       "path": "system.runtime/4.3.0",
       "hashPath": "system.runtime.4.3.0.nupkg.sha512"
     },
-    "System.Runtime.CompilerServices.Unsafe/6.0.0-rc.2.21480.5": {
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Xn/HBsyA/Fsp0gGZpdJcVBluc0MDXisNHHiYXTdreb1Nl4PEid7L6w3JcWrOU9xQFoL5Ep7ySnNDTn1BVVy26Q==",
-      "path": "system.runtime.compilerservices.unsafe/6.0.0-rc.2.21480.5",
-      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0-rc.2.21480.5.nupkg.sha512"
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
     },
     "System.Runtime.Extensions/4.3.0": {
       "type": "package",
