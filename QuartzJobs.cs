@@ -41,6 +41,17 @@ namespace HLeBot
 					.Build()
 			});
 
+			jobsAndTrigger.Add(new JobsAndTrigger()
+			{
+				Job = JobBuilder.Create<UpdateCalendar>()
+					.WithIdentity("job3", "group3")
+					.Build(),
+				Trigger = TriggerBuilder.Create()
+					.WithIdentity("trigger3", "group3")
+					.StartNow()
+					.WithCronSchedule("0 * * * * ?")
+					.Build()
+			});
 			return jobsAndTrigger;
         }
     }
@@ -85,6 +96,14 @@ namespace HLeBot
 				await chnl.SendMessageAsync($"{Program.GetPlayerIdStr()}{(nextEvent.Location.Contains("Thibault") ? "<@&134346294608003072>" : "")} N'oubliez pas !", embed);
 				await Console.Out.WriteLineAsync("Reminder sent");
 			}
+		}
+	}
+
+	public class UpdateCalendar : IJob
+	{
+		public async Task Execute(IJobExecutionContext context)
+		{
+			await Task.Factory.StartNew(() => { Sheet.UpdateSheet(); });
 		}
 	}
 }

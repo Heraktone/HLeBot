@@ -6,10 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DSharpPlus" Version="4.2.0-nightly-01042" />
-    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.2.0-nightly-01042" />
-    <PackageReference Include="DSharpPlus.SlashCommands" Version="4.2.0-nightly-01042" />
-    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.55.0.2490" />
+    <PackageReference Include="DSharpPlus" Version="4.2.0-nightly-01053" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.2.0-nightly-01053" />
+    <PackageReference Include="DSharpPlus.SlashCommands" Version="4.2.0-nightly-01053" />
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.55.0.2500" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.55.0.2502" />
+    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.55.0.2371" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Quartz" Version="3.3.3" />
   </ItemGroup>

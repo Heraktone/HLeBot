@@ -42,3 +42,5 @@ E:\VSProjects\HLeBot\obj\Debug\netcoreapp3.1\HLeBot.dll
 E:\VSProjects\HLeBot\obj\Debug\netcoreapp3.1\HLeBot.pdb
 E:\VSProjects\HLeBot\obj\Debug\netcoreapp3.1\HLeBot.genruntimeconfig.cache
 E:\VSProjects\HLeBot\bin\Debug\netcoreapp3.1\DSharpPlus.SlashCommands.dll
+E:\VSProjects\HLeBot\bin\Debug\netcoreapp3.1\Google.Apis.Drive.v3.dll
+E:\VSProjects\HLeBot\bin\Debug\netcoreapp3.1\Google.Apis.Sheets.v4.dll

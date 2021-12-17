@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "DSharpPlus/4.2.0-nightly-01042": {
+      "DSharpPlus/4.2.0-nightly-01053": {
         "type": "package",
         "dependencies": {
           "Emzi0767.Common": "2.6.2",
@@ -22,10 +22,10 @@
           "lib/netstandard2.0/DSharpPlus.dll": {}
         }
       },
-      "DSharpPlus.CommandsNext/4.2.0-nightly-01042": {
+      "DSharpPlus.CommandsNext/4.2.0-nightly-01053": {
         "type": "package",
         "dependencies": {
-          "DSharpPlus": "4.2.0-nightly-01042",
+          "DSharpPlus": "4.2.0-nightly-01053",
           "Microsoft.Extensions.DependencyInjection": "5.0.1"
         },
         "compile": {
@@ -35,10 +35,10 @@
           "lib/netstandard2.0/DSharpPlus.CommandsNext.dll": {}
         }
       },
-      "DSharpPlus.SlashCommands/4.2.0-nightly-01042": {
+      "DSharpPlus.SlashCommands/4.2.0-nightly-01053": {
         "type": "package",
         "dependencies": {
-          "DSharpPlus": "4.2.0-nightly-01042",
+          "DSharpPlus": "4.2.0-nightly-01053",
           "Microsoft.Extensions.DependencyInjection": "5.0.1"
         },
         "compile": {
@@ -90,7 +90,7 @@
           "lib/netstandard2.0/Google.Apis.Auth.dll": {}
         }
       },
-      "Google.Apis.Calendar.v3/1.55.0.2490": {
+      "Google.Apis.Calendar.v3/1.55.0.2500": {
         "type": "package",
         "dependencies": {
           "Google.Apis": "1.55.0",
@@ -113,6 +113,32 @@
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Core.dll": {}
+        }
+      },
+      "Google.Apis.Drive.v3/1.55.0.2502": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis": "1.55.0",
+          "Google.Apis.Auth": "1.55.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Apis.Drive.v3.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Drive.v3.dll": {}
+        }
+      },
+      "Google.Apis.Sheets.v4/1.55.0.2371": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis": "1.55.0",
+          "Google.Apis.Auth": "1.55.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Apis.Sheets.v4.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Sheets.v4.dll": {}
         }
       },
       "Microsoft.Extensions.DependencyInjection/6.0.0": {
@@ -1409,40 +1435,40 @@
     }
   },
   "libraries": {
-    "DSharpPlus/4.2.0-nightly-01042": {
-      "sha512": "zM12CG5O5Y5YEeZTol30It6nkMAK0H80lENBisTFdx86RKWNVLtYUQ11TKOZM9hoPgRb4H+02NbqaWSgU+pf8Q==",
+    "DSharpPlus/4.2.0-nightly-01053": {
+      "sha512": "Zrcpqqg2vGblPpPJlMigARuxoDn3QzTgcIL3ZuwGvf8BM6aVU0CfwU8VYHiMDMacDBYddOQqhTZuvSqDbcOd3A==",
       "type": "package",
-      "path": "dsharpplus/4.2.0-nightly-01042",
+      "path": "dsharpplus/4.2.0-nightly-01053",
       "files": [
         ".nupkg.metadata",
-        "dsharpplus.4.2.0-nightly-01042.nupkg.sha512",
+        "dsharpplus.4.2.0-nightly-01053.nupkg.sha512",
         "dsharpplus.nuspec",
         "dsharpplus.png",
         "lib/netstandard2.0/DSharpPlus.dll",
         "lib/netstandard2.0/DSharpPlus.xml"
       ]
     },
-    "DSharpPlus.CommandsNext/4.2.0-nightly-01042": {
-      "sha512": "Z7OPq6j0oYaxKiZjPVCksJNbpRNrphGCfnNBGlV7Tv18MAgw+5z7loyTqCKtCm21W2Az6xvS4qtaqc23NsjXww==",
+    "DSharpPlus.CommandsNext/4.2.0-nightly-01053": {
+      "sha512": "nboiCDr40/tvR5zV6lKm5xfTPyfyMVtEoC94rLbLf3aiuJ+zHI6XZOKXsCASNnGy3rDwazkZ4OtlONFC0rCPUw==",
       "type": "package",
-      "path": "dsharpplus.commandsnext/4.2.0-nightly-01042",
+      "path": "dsharpplus.commandsnext/4.2.0-nightly-01053",
       "files": [
         ".nupkg.metadata",
-        "dsharpplus.commandsnext.4.2.0-nightly-01042.nupkg.sha512",
+        "dsharpplus.commandsnext.4.2.0-nightly-01053.nupkg.sha512",
         "dsharpplus.commandsnext.nuspec",
         "dsharpplus.png",
         "lib/netstandard2.0/DSharpPlus.CommandsNext.dll",
         "lib/netstandard2.0/DSharpPlus.CommandsNext.xml"
       ]
     },
-    "DSharpPlus.SlashCommands/4.2.0-nightly-01042": {
-      "sha512": "uTFJqPXBTLK9fkHTWFCmUtbLj2AnhKKoem8ygFkyu41R2DoqOXe95ARJZr0hNr1BrQnNmsb5I0RF+QpSYjLYfA==",
+    "DSharpPlus.SlashCommands/4.2.0-nightly-01053": {
+      "sha512": "l1d/9GtPEepHPK2hbqKq+fF9yBN8+FAu885+jzvkKpg0m7urXWD5QreXd7+GLEWaugP/roDMee9MwrNYX/nvGQ==",
       "type": "package",
-      "path": "dsharpplus.slashcommands/4.2.0-nightly-01042",
+      "path": "dsharpplus.slashcommands/4.2.0-nightly-01053",
       "files": [
         ".nupkg.metadata",
         "dsharpplus.png",
-        "dsharpplus.slashcommands.4.2.0-nightly-01042.nupkg.sha512",
+        "dsharpplus.slashcommands.4.2.0-nightly-01053.nupkg.sha512",
         "dsharpplus.slashcommands.nuspec",
         "lib/netstandard2.0/DSharpPlus.SlashCommands.dll",
         "lib/netstandard2.0/DSharpPlus.SlashCommands.xml"
@@ -1517,16 +1543,16 @@
         "lib/netstandard2.0/Google.Apis.Auth.xml"
       ]
     },
-    "Google.Apis.Calendar.v3/1.55.0.2490": {
-      "sha512": "3n1vTrQdFwYdtqa8meX6SD6f/zhKNTTLSlisLGlXVU7JEuIS+QdOnuASpocfB/2TniAAxDiMUp64eEwXiBVZqw==",
+    "Google.Apis.Calendar.v3/1.55.0.2500": {
+      "sha512": "Tf8Pg83svvoVQtzjrUpNgXmotAWcdBj2mGXSlnCtSTKmJRCb2Aq+oWAj5bxFBfsf0e2hZIRBe3QTeJ6JmiOtyA==",
       "type": "package",
-      "path": "google.apis.calendar.v3/1.55.0.2490",
+      "path": "google.apis.calendar.v3/1.55.0.2500",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NuGetIcon.png",
-        "google.apis.calendar.v3.1.55.0.2490.nupkg.sha512",
+        "google.apis.calendar.v3.1.55.0.2500.nupkg.sha512",
         "google.apis.calendar.v3.nuspec",
         "lib/net40/Google.Apis.Calendar.v3.dll",
         "lib/net40/Google.Apis.Calendar.v3.pdb",
@@ -1565,6 +1591,62 @@
         "lib/netstandard2.0/Google.Apis.Core.dll",
         "lib/netstandard2.0/Google.Apis.Core.pdb",
         "lib/netstandard2.0/Google.Apis.Core.xml"
+      ]
+    },
+    "Google.Apis.Drive.v3/1.55.0.2502": {
+      "sha512": "0gxUjY3U8vepTrqpGbtbk4bid/6yt5NBDCqMJYacSnGzVoW8e1llXi/3PhOLdAElJsYa3pfZ31rT8djptH5UTQ==",
+      "type": "package",
+      "path": "google.apis.drive.v3/1.55.0.2502",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.apis.drive.v3.1.55.0.2502.nupkg.sha512",
+        "google.apis.drive.v3.nuspec",
+        "lib/net40/Google.Apis.Drive.v3.dll",
+        "lib/net40/Google.Apis.Drive.v3.pdb",
+        "lib/net40/Google.Apis.Drive.v3.xml",
+        "lib/net45/Google.Apis.Drive.v3.dll",
+        "lib/net45/Google.Apis.Drive.v3.pdb",
+        "lib/net45/Google.Apis.Drive.v3.xml",
+        "lib/netstandard1.0/Google.Apis.Drive.v3.dll",
+        "lib/netstandard1.0/Google.Apis.Drive.v3.pdb",
+        "lib/netstandard1.0/Google.Apis.Drive.v3.xml",
+        "lib/netstandard1.3/Google.Apis.Drive.v3.dll",
+        "lib/netstandard1.3/Google.Apis.Drive.v3.pdb",
+        "lib/netstandard1.3/Google.Apis.Drive.v3.xml",
+        "lib/netstandard2.0/Google.Apis.Drive.v3.dll",
+        "lib/netstandard2.0/Google.Apis.Drive.v3.pdb",
+        "lib/netstandard2.0/Google.Apis.Drive.v3.xml"
+      ]
+    },
+    "Google.Apis.Sheets.v4/1.55.0.2371": {
+      "sha512": "2CCsbvYYbww7WyN8Bmh51srGGQz4vEzQXHU3BxauvfpXdoHz5V1IqDQ9SqfsECG/bPicfSKVw+FYY5bEb+quYg==",
+      "type": "package",
+      "path": "google.apis.sheets.v4/1.55.0.2371",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.apis.sheets.v4.1.55.0.2371.nupkg.sha512",
+        "google.apis.sheets.v4.nuspec",
+        "lib/net40/Google.Apis.Sheets.v4.dll",
+        "lib/net40/Google.Apis.Sheets.v4.pdb",
+        "lib/net40/Google.Apis.Sheets.v4.xml",
+        "lib/net45/Google.Apis.Sheets.v4.dll",
+        "lib/net45/Google.Apis.Sheets.v4.pdb",
+        "lib/net45/Google.Apis.Sheets.v4.xml",
+        "lib/netstandard1.0/Google.Apis.Sheets.v4.dll",
+        "lib/netstandard1.0/Google.Apis.Sheets.v4.pdb",
+        "lib/netstandard1.0/Google.Apis.Sheets.v4.xml",
+        "lib/netstandard1.3/Google.Apis.Sheets.v4.dll",
+        "lib/netstandard1.3/Google.Apis.Sheets.v4.pdb",
+        "lib/netstandard1.3/Google.Apis.Sheets.v4.xml",
+        "lib/netstandard2.0/Google.Apis.Sheets.v4.dll",
+        "lib/netstandard2.0/Google.Apis.Sheets.v4.pdb",
+        "lib/netstandard2.0/Google.Apis.Sheets.v4.xml"
       ]
     },
     "Microsoft.Extensions.DependencyInjection/6.0.0": {
@@ -4816,10 +4898,12 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "DSharpPlus >= 4.2.0-nightly-01042",
-      "DSharpPlus.CommandsNext >= 4.2.0-nightly-01042",
-      "DSharpPlus.SlashCommands >= 4.2.0-nightly-01042",
-      "Google.Apis.Calendar.v3 >= 1.55.0.2490",
+      "DSharpPlus >= 4.2.0-nightly-01053",
+      "DSharpPlus.CommandsNext >= 4.2.0-nightly-01053",
+      "DSharpPlus.SlashCommands >= 4.2.0-nightly-01053",
+      "Google.Apis.Calendar.v3 >= 1.55.0.2500",
+      "Google.Apis.Drive.v3 >= 1.55.0.2502",
+      "Google.Apis.Sheets.v4 >= 1.55.0.2371",
       "Microsoft.Extensions.DependencyInjection >= 6.0.0",
       "Quartz >= 3.3.3"
     ]
@@ -4874,19 +4958,27 @@
         "dependencies": {
           "DSharpPlus": {
             "target": "Package",
-            "version": "[4.2.0-nightly-01042, )"
+            "version": "[4.2.0-nightly-01053, )"
           },
           "DSharpPlus.CommandsNext": {
             "target": "Package",
-            "version": "[4.2.0-nightly-01042, )"
+            "version": "[4.2.0-nightly-01053, )"
           },
           "DSharpPlus.SlashCommands": {
             "target": "Package",
-            "version": "[4.2.0-nightly-01042, )"
+            "version": "[4.2.0-nightly-01053, )"
           },
           "Google.Apis.Calendar.v3": {
             "target": "Package",
-            "version": "[1.55.0.2490, )"
+            "version": "[1.55.0.2500, )"
+          },
+          "Google.Apis.Drive.v3": {
+            "target": "Package",
+            "version": "[1.55.0.2502, )"
+          },
+          "Google.Apis.Sheets.v4": {
+            "target": "Package",
+            "version": "[1.55.0.2371, )"
           },
           "Microsoft.Extensions.DependencyInjection": {
             "target": "Package",

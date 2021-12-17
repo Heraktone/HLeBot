@@ -50,19 +50,27 @@
           "dependencies": {
             "DSharpPlus": {
               "target": "Package",
-              "version": "[4.2.0-nightly-01042, )"
+              "version": "[4.2.0-nightly-01053, )"
             },
             "DSharpPlus.CommandsNext": {
               "target": "Package",
-              "version": "[4.2.0-nightly-01042, )"
+              "version": "[4.2.0-nightly-01053, )"
             },
             "DSharpPlus.SlashCommands": {
               "target": "Package",
-              "version": "[4.2.0-nightly-01042, )"
+              "version": "[4.2.0-nightly-01053, )"
             },
             "Google.Apis.Calendar.v3": {
               "target": "Package",
-              "version": "[1.55.0.2490, )"
+              "version": "[1.55.0.2500, )"
+            },
+            "Google.Apis.Drive.v3": {
+              "target": "Package",
+              "version": "[1.55.0.2502, )"
+            },
+            "Google.Apis.Sheets.v4": {
+              "target": "Package",
+              "version": "[1.55.0.2371, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",

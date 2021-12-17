@@ -8,10 +8,12 @@
     ".NETCoreApp,Version=v3.1": {
       "HLeBot/1.0.0": {
         "dependencies": {
-          "DSharpPlus": "4.2.0-nightly-01042",
-          "DSharpPlus.CommandsNext": "4.2.0-nightly-01042",
-          "DSharpPlus.SlashCommands": "4.2.0-nightly-01042",
-          "Google.Apis.Calendar.v3": "1.55.0.2490",
+          "DSharpPlus": "4.2.0-nightly-01053",
+          "DSharpPlus.CommandsNext": "4.2.0-nightly-01053",
+          "DSharpPlus.SlashCommands": "4.2.0-nightly-01053",
+          "Google.Apis.Calendar.v3": "1.55.0.2500",
+          "Google.Apis.Drive.v3": "1.55.0.2502",
+          "Google.Apis.Sheets.v4": "1.55.0.2371",
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Quartz": "3.3.3"
         },
@@ -19,7 +21,7 @@
           "HLeBot.dll": {}
         }
       },
-      "DSharpPlus/4.2.0-nightly-01042": {
+      "DSharpPlus/4.2.0-nightly-01053": {
         "dependencies": {
           "Emzi0767.Common": "2.6.2",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
@@ -33,32 +35,32 @@
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.dll": {
-            "assemblyVersion": "4.2.0.1042",
-            "fileVersion": "4.2.0.1042"
+            "assemblyVersion": "4.2.0.1053",
+            "fileVersion": "4.2.0.1053"
           }
         }
       },
-      "DSharpPlus.CommandsNext/4.2.0-nightly-01042": {
+      "DSharpPlus.CommandsNext/4.2.0-nightly-01053": {
         "dependencies": {
-          "DSharpPlus": "4.2.0-nightly-01042",
+          "DSharpPlus": "4.2.0-nightly-01053",
           "Microsoft.Extensions.DependencyInjection": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.CommandsNext.dll": {
-            "assemblyVersion": "4.2.0.1042",
-            "fileVersion": "4.2.0.1042"
+            "assemblyVersion": "4.2.0.1053",
+            "fileVersion": "4.2.0.1053"
           }
         }
       },
-      "DSharpPlus.SlashCommands/4.2.0-nightly-01042": {
+      "DSharpPlus.SlashCommands/4.2.0-nightly-01053": {
         "dependencies": {
-          "DSharpPlus": "4.2.0-nightly-01042",
+          "DSharpPlus": "4.2.0-nightly-01053",
           "Microsoft.Extensions.DependencyInjection": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/DSharpPlus.SlashCommands.dll": {
-            "assemblyVersion": "4.2.0.1042",
-            "fileVersion": "4.2.0.1042"
+            "assemblyVersion": "4.2.0.1053",
+            "fileVersion": "4.2.0.1053"
           }
         }
       },
@@ -103,15 +105,15 @@
           }
         }
       },
-      "Google.Apis.Calendar.v3/1.55.0.2490": {
+      "Google.Apis.Calendar.v3/1.55.0.2500": {
         "dependencies": {
           "Google.Apis": "1.55.0",
           "Google.Apis.Auth": "1.55.0"
         },
         "runtime": {
           "lib/netstandard2.0/Google.Apis.Calendar.v3.dll": {
-            "assemblyVersion": "1.55.0.2490",
-            "fileVersion": "1.55.0.2490"
+            "assemblyVersion": "1.55.0.2500",
+            "fileVersion": "1.55.0.2500"
           }
         }
       },
@@ -123,6 +125,30 @@
           "lib/netstandard2.0/Google.Apis.Core.dll": {
             "assemblyVersion": "1.55.0.0",
             "fileVersion": "1.55.0.0"
+          }
+        }
+      },
+      "Google.Apis.Drive.v3/1.55.0.2502": {
+        "dependencies": {
+          "Google.Apis": "1.55.0",
+          "Google.Apis.Auth": "1.55.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Drive.v3.dll": {
+            "assemblyVersion": "1.55.0.2502",
+            "fileVersion": "1.55.0.2502"
+          }
+        }
+      },
+      "Google.Apis.Sheets.v4/1.55.0.2371": {
+        "dependencies": {
+          "Google.Apis": "1.55.0",
+          "Google.Apis.Auth": "1.55.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Sheets.v4.dll": {
+            "assemblyVersion": "1.55.0.2371",
+            "fileVersion": "1.55.0.2371"
           }
         }
       },
@@ -886,26 +912,26 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DSharpPlus/4.2.0-nightly-01042": {
+    "DSharpPlus/4.2.0-nightly-01053": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zM12CG5O5Y5YEeZTol30It6nkMAK0H80lENBisTFdx86RKWNVLtYUQ11TKOZM9hoPgRb4H+02NbqaWSgU+pf8Q==",
-      "path": "dsharpplus/4.2.0-nightly-01042",
-      "hashPath": "dsharpplus.4.2.0-nightly-01042.nupkg.sha512"
+      "sha512": "sha512-Zrcpqqg2vGblPpPJlMigARuxoDn3QzTgcIL3ZuwGvf8BM6aVU0CfwU8VYHiMDMacDBYddOQqhTZuvSqDbcOd3A==",
+      "path": "dsharpplus/4.2.0-nightly-01053",
+      "hashPath": "dsharpplus.4.2.0-nightly-01053.nupkg.sha512"
     },
-    "DSharpPlus.CommandsNext/4.2.0-nightly-01042": {
+    "DSharpPlus.CommandsNext/4.2.0-nightly-01053": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Z7OPq6j0oYaxKiZjPVCksJNbpRNrphGCfnNBGlV7Tv18MAgw+5z7loyTqCKtCm21W2Az6xvS4qtaqc23NsjXww==",
-      "path": "dsharpplus.commandsnext/4.2.0-nightly-01042",
-      "hashPath": "dsharpplus.commandsnext.4.2.0-nightly-01042.nupkg.sha512"
+      "sha512": "sha512-nboiCDr40/tvR5zV6lKm5xfTPyfyMVtEoC94rLbLf3aiuJ+zHI6XZOKXsCASNnGy3rDwazkZ4OtlONFC0rCPUw==",
+      "path": "dsharpplus.commandsnext/4.2.0-nightly-01053",
+      "hashPath": "dsharpplus.commandsnext.4.2.0-nightly-01053.nupkg.sha512"
     },
-    "DSharpPlus.SlashCommands/4.2.0-nightly-01042": {
+    "DSharpPlus.SlashCommands/4.2.0-nightly-01053": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uTFJqPXBTLK9fkHTWFCmUtbLj2AnhKKoem8ygFkyu41R2DoqOXe95ARJZr0hNr1BrQnNmsb5I0RF+QpSYjLYfA==",
-      "path": "dsharpplus.slashcommands/4.2.0-nightly-01042",
-      "hashPath": "dsharpplus.slashcommands.4.2.0-nightly-01042.nupkg.sha512"
+      "sha512": "sha512-l1d/9GtPEepHPK2hbqKq+fF9yBN8+FAu885+jzvkKpg0m7urXWD5QreXd7+GLEWaugP/roDMee9MwrNYX/nvGQ==",
+      "path": "dsharpplus.slashcommands/4.2.0-nightly-01053",
+      "hashPath": "dsharpplus.slashcommands.4.2.0-nightly-01053.nupkg.sha512"
     },
     "Emzi0767.Common/2.6.2": {
       "type": "package",
@@ -928,12 +954,12 @@
       "path": "google.apis.auth/1.55.0",
       "hashPath": "google.apis.auth.1.55.0.nupkg.sha512"
     },
-    "Google.Apis.Calendar.v3/1.55.0.2490": {
+    "Google.Apis.Calendar.v3/1.55.0.2500": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3n1vTrQdFwYdtqa8meX6SD6f/zhKNTTLSlisLGlXVU7JEuIS+QdOnuASpocfB/2TniAAxDiMUp64eEwXiBVZqw==",
-      "path": "google.apis.calendar.v3/1.55.0.2490",
-      "hashPath": "google.apis.calendar.v3.1.55.0.2490.nupkg.sha512"
+      "sha512": "sha512-Tf8Pg83svvoVQtzjrUpNgXmotAWcdBj2mGXSlnCtSTKmJRCb2Aq+oWAj5bxFBfsf0e2hZIRBe3QTeJ6JmiOtyA==",
+      "path": "google.apis.calendar.v3/1.55.0.2500",
+      "hashPath": "google.apis.calendar.v3.1.55.0.2500.nupkg.sha512"
     },
     "Google.Apis.Core/1.55.0": {
       "type": "package",
@@ -941,6 +967,20 @@
       "sha512": "sha512-QX6pmjRxZYgyGFqsa7tyxdjoEb6ssJ9lv6ub8AxhPd/BCMEglmqzW4GpsuKQZaRg9Qq9gp9HRzjCiLZ3RgmNgw==",
       "path": "google.apis.core/1.55.0",
       "hashPath": "google.apis.core.1.55.0.nupkg.sha512"
+    },
+    "Google.Apis.Drive.v3/1.55.0.2502": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0gxUjY3U8vepTrqpGbtbk4bid/6yt5NBDCqMJYacSnGzVoW8e1llXi/3PhOLdAElJsYa3pfZ31rT8djptH5UTQ==",
+      "path": "google.apis.drive.v3/1.55.0.2502",
+      "hashPath": "google.apis.drive.v3.1.55.0.2502.nupkg.sha512"
+    },
+    "Google.Apis.Sheets.v4/1.55.0.2371": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2CCsbvYYbww7WyN8Bmh51srGGQz4vEzQXHU3BxauvfpXdoHz5V1IqDQ9SqfsECG/bPicfSKVw+FYY5bEb+quYg==",
+      "path": "google.apis.sheets.v4/1.55.0.2371",
+      "hashPath": "google.apis.sheets.v4.1.55.0.2371.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection/6.0.0": {
       "type": "package",
