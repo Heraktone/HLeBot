@@ -43,7 +43,7 @@ namespace HLeBot
             var modifiedTime = request.Execute().ModifiedTimeRaw;
             if (LastChangeId?.Equals(modifiedTime, StringComparison.OrdinalIgnoreCase) ?? false)
             {
-                Console.WriteLine("Skipped edit because no changes found");
+                // "Skipped edit because no changes found";
                 return;
             }
             LastChangeId = modifiedTime;
