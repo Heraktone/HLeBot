@@ -8,34 +8,31 @@ using System.Threading;
 
 namespace HLeBot
 {
-    public class Sheet
+    public static class Sheet
     {
-        static string ApplicationName = "Google Calendar API .NET Quickstart";
+        static string ApplicationName;
 
-        static SheetsService Service = InitSheetService();
-        static DriveService DService = InitDriveService();
-        static string SpreadsheetId = Environment.GetEnvironmentVariable("SPREADSHEET_ID");
+        static SheetsService Service;
+        static DriveService DService;
+        static string SpreadsheetId;
 
         static string LastChangeId = null;
 
-        public static SheetsService InitSheetService()
+        static Sheet()
         {
             // Create Google Calendar API service.
-            return new SheetsService(new BaseClientService.Initializer()
+            Service = new SheetsService(new BaseClientService.Initializer()
             {
                 ApiKey = Environment.GetEnvironmentVariable("GOOGLE_API_KEY"),
                 ApplicationName = ApplicationName,
             });
-        }
-
-        public static DriveService InitDriveService()
-        {
-            // Create Google Calendar API service.
-            return new DriveService(new BaseClientService.Initializer()
+            DService = new DriveService(new BaseClientService.Initializer()
             {
                 ApiKey = Environment.GetEnvironmentVariable("GOOGLE_API_KEY"),
                 ApplicationName = ApplicationName,
             });
+            SpreadsheetId = Environment.GetEnvironmentVariable("SPREADSHEET_ID");
+            ApplicationName = "Google Calendar API .NET Quickstart";
         }
 
         public static void UpdateSheet()

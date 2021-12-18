@@ -11,17 +11,16 @@ using System.Threading;
 
 namespace HLeBot
 {
-    public class Calendar
+    public static class Calendar
     {
-        static string ApplicationName = "Google Calendar API .NET Quickstart";
+        static string ApplicationName;
+        static CalendarService Service;
+        static string CalendarId;
 
-        static CalendarService Service = InitCalendarService();
-        static string CalendarId = Environment.GetEnvironmentVariable("GOOGLE_CALENDAR");
-
-        public static CalendarService InitCalendarService()
+        static Calendar()
         {
             string googleAddress = Environment.GetEnvironmentVariable("GOOGLE_ADDRESS");
-            string googleSecret = Environment.GetEnvironmentVariable("GOOGLE_SECRET");
+            string googleSecret = Environment.GetEnvironmentVariable("GOOGLE_SECRET").Replace("\\n", "");
             var xCred = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(googleAddress)
             {
                 Scopes = new[] {
@@ -31,11 +30,14 @@ namespace HLeBot
             }.FromPrivateKey(googleSecret));
 
             // Create Google Calendar API service.
-            return new CalendarService(new BaseClientService.Initializer()
+            Service = new CalendarService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = xCred,
                 ApplicationName = ApplicationName,
             });
+
+            CalendarId = Environment.GetEnvironmentVariable("GOOGLE_CALENDAR");
+            ApplicationName = "Google Calendar API .NET Quickstart";
         }
 
         public static Event GetNextEvent()
