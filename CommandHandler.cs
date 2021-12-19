@@ -69,6 +69,32 @@ namespace HLeBot
             await ctx.DeleteResponseAsync();
         }
 
+        [ContextMenu(ApplicationCommandType.MessageContextMenu, "Buy as NFT")]
+        public async Task BuyMessage(ContextMenuContext ctx)
+        {
+            if (Sheet.BuyNFT(ctx.TargetMessage.Id.ToString(), ctx.User.Username))
+            {
+                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent($"Tu as acheté {ctx.TargetMessage.Id}, il est a toi maintenant, super."));
+            } else
+            {
+                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent($"Zut, {ctx.TargetMessage.Id} appartient déja a quelqu'un d'autre, dommage, peut être qu'un jour tu pourras lui acheter."));
+            }
+        }
+
+        [ContextMenu(ApplicationCommandType.MessageContextMenu, "Get Owner NFT")]
+        public async Task GetOwnerMessage(ContextMenuContext ctx)
+        {
+            var user = Sheet.GetNFT(ctx.TargetMessage.Id.ToString());
+            if (string.IsNullOrWhiteSpace(user))
+            {
+                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent($"{ctx.TargetMessage.Id}, n'appartient à personne, vite achète le."));
+            } else
+            {
+                await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent($"{ctx.TargetMessage.Id}, appartient à {user}."));
+            }
+        }
+
+
         [SlashCommand("plsadd", "Demande l'ajout d'une fonctionnalité au créateur.")]
         public async Task PlsAdd(InteractionContext ctx, [Option("fonctionnalite", "Fonctionnalité à ajouter")] string text)
         {

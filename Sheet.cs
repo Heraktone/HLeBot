@@ -1,6 +1,8 @@
-﻿using Google.Apis.Drive.v3;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
+using Google.Apis.Sheets.v4.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +17,24 @@ namespace HLeBot
         static SheetsService Service;
         static DriveService DService;
         static string SpreadsheetId;
+        static string DB_Spreadsheet_Id = "1E87TQns8ZQcHX1UwCPhjDw6l41bROZZ6W7w_XikFPl0";
 
         static string LastChangeId = null;
 
         static Sheet()
         {
-            // Create Google Calendar API service.
+            // Create Google Sheets API service.
+            string googleAddress = Environment.GetEnvironmentVariable("GOOGLE_ADDRESS");
+            string googleSecret = Environment.GetEnvironmentVariable("GOOGLE_SECRET").Replace("\\n", "");
+            var xCred = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(googleAddress)
+            {
+                Scopes = new[] {
+                    SheetsService.Scope.Spreadsheets
+                }
+            }.FromPrivateKey(googleSecret));
             Service = new SheetsService(new BaseClientService.Initializer()
             {
-                ApiKey = Environment.GetEnvironmentVariable("GOOGLE_API_KEY"),
+                HttpClientInitializer = xCred,
                 ApplicationName = ApplicationName,
             });
             DService = new DriveService(new BaseClientService.Initializer()
@@ -81,6 +92,47 @@ namespace HLeBot
                 Console.WriteLine($"Creating event : '{name}' from '{startDate}' to '{endDate}' at '{place}' with description '{description}'");
                 Calendar.CreateEvent(name, startDate, endDate, description, place);
                 Thread.Sleep(TimeSpan.FromMilliseconds(100));
+            }
+        }
+
+        public static bool BuyNFT(string hash, string owner)
+        {
+            var spreadsheetContent = Service.Spreadsheets.Values.Get(DB_Spreadsheet_Id, "NFT!A2:B").Execute();
+            IList<IList<Object>> spreadsheetContentValues = spreadsheetContent.Values;
+            var value = spreadsheetContentValues?.FirstOrDefault(r => ((string)r[0]).Equals(hash, StringComparison.OrdinalIgnoreCase));
+            if (value == null)
+            {
+                var index = spreadsheetContentValues?.Count() ?? 0;
+                IList<Object> obj = new List<Object>();
+                obj.Add(hash);
+                obj.Add(owner);
+                IList<IList<Object>> values = new List<IList<Object>>();
+                values.Add(obj);
+
+                SpreadsheetsResource.ValuesResource.AppendRequest request = Service.Spreadsheets.Values.Append(new ValueRange() { Values = values }, DB_Spreadsheet_Id, "A:B");
+                request.InsertDataOption = SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS;
+                request.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW;
+                var response = request.Execute();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static string GetNFT(string hash)
+        {
+            var spreadsheetContent = Service.Spreadsheets.Values.Get(DB_Spreadsheet_Id, "NFT!A2:B").Execute();
+            IList<IList<Object>> spreadsheetContentValues = spreadsheetContent.Values;
+            var value = spreadsheetContentValues.FirstOrDefault(r => ((string)r[0]).Equals(hash, StringComparison.OrdinalIgnoreCase));
+            if (value == null)
+            {
+                return null;
+            }
+            else
+            {
+                return (string)value[1];
             }
         }
     }
