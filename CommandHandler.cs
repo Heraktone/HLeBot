@@ -23,19 +23,44 @@ namespace HLeBot
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed));
         }
 
-        [SlashCommand("ckanchez", "Dis moi c'est quand et où la prochaine séance chez intel.")]
-        public async Task CKanChezAsync(InteractionContext ctx, [Option("Prenom", "prenom")] string prenom)
+        private async Task<DiscordWebhookBuilder> CKanChezAsyncInternal(BaseContext ctx, string prenom)
         {
             await ctx.CreateResponseAsync(InteractionResponseType.DeferredChannelMessageWithSource);
+            if (string.IsNullOrEmpty(prenom))
+            {
+                return new DiscordWebhookBuilder().WithContent("Je n'ai aucune date : https://calendar.google.com/calendar/embed?src=l0lml0k1q8ackrm1o8uscub5o8%40group.calendar.google.com&ctz=America%2FToronto");
+            }
             var events = Calendar.GetNextEvents(200);
             var eventItem = events.Items.FirstOrDefault(e => e.Location.Contains(prenom, System.StringComparison.OrdinalIgnoreCase));
             if (eventItem == null)
             {
-                await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent("Je n'ai aucune date : https://calendar.google.com/calendar/embed?src=l0lml0k1q8ackrm1o8uscub5o8%40group.calendar.google.com&ctz=America%2FToronto"));
+                return new DiscordWebhookBuilder().WithContent("Je n'ai aucune date : https://calendar.google.com/calendar/embed?src=l0lml0k1q8ackrm1o8uscub5o8%40group.calendar.google.com&ctz=America%2FToronto");
             }
 
             var embed = Calendar.CreateEmbed(eventItem);
-            await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(embed));
+            return new DiscordWebhookBuilder().AddEmbed(embed);
+        }
+
+        [SlashCommand("ckanchez", "Dis moi c'est quand et où la prochaine séance chez intel.")]
+        public async Task CKanChezAsync(InteractionContext ctx, [Option("Prenom", "prenom")] string prenom)
+        {
+            var builder = await CKanChezAsyncInternal(ctx, prenom);
+            await ctx.EditResponseAsync(builder);
+        }
+
+        [SlashCommand("cqanchez", "Dis moi c'est quand et où la prochaine séance chez intel.")]
+        public async Task CKanChezUserAsync(InteractionContext ctx, [Option("Username", "UserName")] DiscordUser userName)
+        {
+            var builder = await CKanChezAsyncInternal(ctx, Sheet.GetUser(userName.Username));
+            await ctx.EditResponseAsync(builder);
+        }
+
+        [ContextMenu(ApplicationCommandType.UserContextMenu, "CKanChez")]
+        public async Task CKanChezMenuAsync(ContextMenuContext ctx)
+        {
+            var builder = await CKanChezAsyncInternal(ctx, Sheet.GetUser(ctx.TargetMember?.Username));
+            await ctx.Member.SendMessageAsync(builder.Embeds[0] ?? new DiscordEmbedBuilder() { Description = builder.Content });
+            await ctx.DeleteResponseAsync();
         }
 
         [SlashCommand("gf1", "Lance un sondage pour savoir quoi manger.")]

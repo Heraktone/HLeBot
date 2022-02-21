@@ -95,6 +95,21 @@ namespace HLeBot
             }
         }
 
+        public static string GetUser(string user)
+        {
+            var spreadsheetContent = Service.Spreadsheets.Values.Get(DB_Spreadsheet_Id, "LinkNames!A2:C").Execute();
+            IList<IList<Object>> spreadsheetContentValues = spreadsheetContent.Values;
+            var value = spreadsheetContentValues.FirstOrDefault(r => ((string)r[2]).Equals(user, StringComparison.OrdinalIgnoreCase));
+            if (value == null)
+            {
+                return null;
+            }
+            else
+            {
+                return (string)value[0];
+            }
+        }
+
         public static bool BuyNFT(string hash, string owner)
         {
             var spreadsheetContent = Service.Spreadsheets.Values.Get(DB_Spreadsheet_Id, "NFT!A2:B").Execute();

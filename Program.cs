@@ -49,25 +49,32 @@ namespace HLeBot
             var commands = Client.UseSlashCommands();
             commands.RegisterCommands<Commands>();
 
-            IScheduler sched = await SchedulerBuilder.Create()
-                .UseDefaultThreadPool(x => x.MaxConcurrency = 1)
-                .BuildScheduler();
-
-            await sched.Start();
-
-            var jobsAndTrigger = QuartzJobs.CreateJobsAndTrigger();
+            var jobsEnabled = Environment.GetEnvironmentVariable("DISCORD_JOBS_ENABLED");
 
             await Client.ConnectAsync();
             Console.WriteLine("Bot is connected!");
-            foreach(var jobAndTrigger in jobsAndTrigger)
+
+            IScheduler sched = null;
+            if (jobsEnabled != "false")
             {
-                await sched.ScheduleJob(jobAndTrigger.Job, jobAndTrigger.Trigger);
+                sched = await SchedulerBuilder.Create()
+                    .UseDefaultThreadPool(x => x.MaxConcurrency = 1)
+                    .BuildScheduler();
+
+                await sched.Start();
+
+                var jobsAndTrigger = QuartzJobs.CreateJobsAndTrigger();
+
+                foreach (var jobAndTrigger in jobsAndTrigger)
+                {
+                    await sched.ScheduleJob(jobAndTrigger.Job, jobAndTrigger.Trigger);
+                }
             }
 
             // Block this task until the program is closed.
             await Task.Delay(-1);
 
-            await sched.Shutdown();
+            await sched?.Shutdown();
         }
 	}
 

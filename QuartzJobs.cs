@@ -61,7 +61,7 @@ namespace HLeBot
 		public async Task Execute(IJobExecutionContext context)
 		{
 			var nextEvent = Calendar.GetNextEvent();
-			if (nextEvent == null || !nextEvent.Start.DateTime.HasValue|| (int)(DateTime.Today - nextEvent.Start.DateTime.Value.Date).TotalDays != 0)
+			if (nextEvent == null || !nextEvent.Start.DateTime.HasValue || (int)(DateTime.Today - nextEvent.Start.DateTime.Value.Date).TotalDays != 0 || nextEvent.Location.ToLowerInvariant().Contains("discord"))
 			{
 				return;
 			}
